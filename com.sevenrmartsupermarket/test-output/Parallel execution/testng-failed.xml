@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="8" parallel="tests" name="Failed suite [Parallel execution]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.sevenrmartsupermarket.listeners.ExtentReporter"/>
+  </listeners>
+  <test thread-count="8" parallel="tests" name="Sanity testing(failed)">
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUsersTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="launchBrowser"/>
+          <include name="endSession"/>
+          <include name="verifyUserDeactivation"/>
+          <include name="createUser"/>
+          <include name="verifyUserDeletion"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUsersTest -->
+    </classes>
+  </test> <!-- Sanity testing(failed) -->
+</suite> <!-- Failed suite [Parallel execution] -->
