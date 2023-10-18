@@ -26,6 +26,8 @@ public class ManageProductPage {
 	private WebElement titleField;
 	@FindBy(xpath = "//button[@name='Search']")
 	private WebElement searchButton;
+	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
+	private WebElement titleName;
 
 	public ManageProductPage(WebDriver driver) {
 		this.driver = driver;
@@ -50,8 +52,6 @@ public class ManageProductPage {
 		titleField.clear();
 		titleField.sendKeys(title);
 		searchButton.click();
-		WebElement titleName = driver
-				.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]"));
 		if (titleName.getText().equals(title)) {
 			return true;
 		} else {

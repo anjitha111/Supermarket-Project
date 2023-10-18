@@ -41,7 +41,7 @@ public class ManagePaymentPage {
 
 	public void editPayment(String title, String payLimit) {
 		editButtonClick();
-		enterData(title, payLimit);
+		updateData(title, payLimit);
 	}
 
 	public void managePaymentMenuClick() {
@@ -56,7 +56,7 @@ public class ManagePaymentPage {
 		editButton.click();
 	}
 
-	public boolean enterData(String title, String payLimit) {
+	public boolean updateData(String title, String payLimit) {
 		titleField.clear();
 		titleField.sendKeys(title);
 		payLimitField.clear();

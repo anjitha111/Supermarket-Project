@@ -19,7 +19,7 @@ public class ManageContentTest extends Base {
 	ExcelReader excelReader = new ExcelReader();
 
 	@Test(groups = { "Smoke Test", "Sanity Test" })
-	public void managePage() {
+	public void verifyManagePage() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);
 		manageContentPage = new ManageContentPage(driver);

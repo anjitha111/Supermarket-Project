@@ -27,7 +27,9 @@ public class AdminUsersPage {
 	private WebElement adminUsersMenu;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	private WebElement newButton;
-	@FindBy(xpath = "//input[@id='username']")
+	@FindBy(xpath="//input[@name='username']")
+	WebElement editUsernameField;
+	@FindBy(xpath = "//input[@id='un']")
 	private WebElement userName;
 	@FindBy(xpath = "//input[@id='password']")
 	private WebElement passWord;
@@ -152,21 +154,23 @@ public class AdminUsersPage {
 	 }
 	 WebElement editButton = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
 	 pageUtility.scrollAndClick(editButton);
-	 editUsername("Ayaansh");
+	 editUsername("Janaki");
 	 } 
 	public void editUsername(String username)
 	{
-		userName.click(); 
-		userName.clear(); 
-		userName.sendKeys(username);
+		editUsernameField.click(); 
+		editUsernameField.clear(); 
+		editUsernameField.sendKeys(username);
 		updateButton.click();
 		
 	}
 	public boolean searchUser(String user)
 	{
+		waitUtility = new WaitUtility(driver);
 		searchButton.click();
 		userName.click();
 		userName.sendKeys(user);
+		waitUtility.waitForElementToBeClickable(usernameSearchField, 10l);
 		usernameSearchField.click();
 		if(user.equals(usernameSearchResult.getText()))
 		{

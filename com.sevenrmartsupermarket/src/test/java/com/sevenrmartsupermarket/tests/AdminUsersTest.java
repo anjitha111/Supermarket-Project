@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.sevenrmartsupermarket.base.Base;
 import com.sevenrmartsupermarket.constants.Constants;
 import com.sevenrmartsupermarket.listeners.RetryAnalyser;
@@ -44,8 +43,7 @@ public class AdminUsersTest extends Base {
 		adminUsersPage.deActivateUser("Switha");
 		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
 	}
-	
-	@Test(groups = "Smoke Test", retryAnalyzer = RetryAnalyser.class)
+	@Test(groups = "Regression Test",priority=2)
 	public void verifyUserActivation() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);
@@ -55,7 +53,7 @@ public class AdminUsersTest extends Base {
 		adminUsersPage.activateUser(excelReader.getCellData(3, 0));		
 		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
 	}
-	@Test(groups = "Smoke Test",priority = 4) 
+	@Test(groups = "Sanity Test",priority = 3) 
 	 public void verifyEditUserName()
 	 { 
 		loginPage= new LoginPage(driver); 
@@ -65,10 +63,23 @@ public class AdminUsersTest extends Base {
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
 		adminUsersPage.clickOnEditUser(excelReader.getCellData(0, 0));
 		Assert.assertTrue(adminUsersPage.isEditMessageAppeared(), "User edit was not successful.");
-		boolean isUpdatedUserPresent = adminUsersPage.searchUser(excelReader.getCellData(2, 0));
+		boolean isUpdatedUserPresent = adminUsersPage.searchUser("Janaki");
 		Assert.assertTrue(isUpdatedUserPresent, "User details are not updated.");
 	 }
-	@Test(groups = "Sanity Test")
+
+	@Test(groups = "Smoke Test",priority=4) 
+	public void verifySearchUser() 
+	 { 
+	 loginPage = new LoginPage(driver); 
+	 loginPage.login(); 
+	 adminUsersPage = new AdminUsersPage(driver);
+	 adminUsersPage.adminUsersMenuClick(); 
+	 excelReader.setExcelFile("AdminUserData", "Admin User Input"); 
+	 boolean isUpdatedUserPresent = adminUsersPage.searchUser(excelReader.getCellData(1, 0)); 
+	 Assert.assertTrue(isUpdatedUserPresent,"User does not exist!!!");
+	 }
+	
+	@Test(groups = "Sanity Test",priority=5)
 	public void verifyUserDeletion() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);

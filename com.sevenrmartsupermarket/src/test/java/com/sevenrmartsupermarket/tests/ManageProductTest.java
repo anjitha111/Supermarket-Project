@@ -13,7 +13,7 @@ public class ManageProductTest extends Base {
 	ManageProductPage manageProductPage;
 
 	@Test
-	public void searchProduct() {
+	public void verifySearchProduct() {
 		loginPage = new LoginPage(driver);
 		manageProductPage = new ManageProductPage(driver);
 		loginPage.login();
