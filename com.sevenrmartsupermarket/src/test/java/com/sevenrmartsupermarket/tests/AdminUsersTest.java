@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.sevenrmartsupermarket.base.Base;
 import com.sevenrmartsupermarket.constants.Constants;
@@ -18,6 +19,7 @@ public class AdminUsersTest extends Base {
 	AdminUsersPage adminUsersPage;
 	LoginPage loginPage;
 	ExcelReader excelReader = new ExcelReader();
+	SoftAssert softassert = new SoftAssert(); 
 
 	@Test
 	public void createUser() {
@@ -34,25 +36,39 @@ public class AdminUsersTest extends Base {
 	}
 
 	@Test(groups = "Smoke Test", retryAnalyzer = RetryAnalyser.class)
-
 	public void verifyUserDeactivation() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
 		adminUsersPage.deActivateUser("Switha");
+		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
 	}
-
-	@Test
-	public void verifyGetUserDetails() {
-		System.out.println(GeneralUtility.getRandomFullName());
-		System.out.println(GeneralUtility.getRandomFirstName());
-		System.out.println(GeneralUtility.getRandomLastName());
-		System.out.println(GeneralUtility.getRandomAddress());
+	
+	@Test(groups = "Smoke Test", retryAnalyzer = RetryAnalyser.class)
+	public void verifyUserActivation() {
+		loginPage = new LoginPage(driver);
+		adminUsersPage = new AdminUsersPage(driver);
+		loginPage.login();
+		adminUsersPage.adminUsersMenuClick();
+		excelReader.setExcelFile("AdminUserData", "Admin User Input"); 
+		adminUsersPage.activateUser(excelReader.getCellData(3, 0));		
+		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
 	}
-
+	@Test(groups = "Smoke Test",priority = 4) 
+	 public void verifyEditUserName()
+	 { 
+		loginPage= new LoginPage(driver); 
+		loginPage.login(); 
+		adminUsersPage= new AdminUsersPage(driver); 
+		adminUsersPage.adminUsersMenuClick();
+		excelReader.setExcelFile("AdminUserData", "Admin User Input");
+		adminUsersPage.clickOnEditUser(excelReader.getCellData(0, 0));
+		Assert.assertTrue(adminUsersPage.isEditMessageAppeared(), "User edit was not successful.");
+		boolean isUpdatedUserPresent = adminUsersPage.searchUser(excelReader.getCellData(2, 0));
+		Assert.assertTrue(isUpdatedUserPresent, "User details are not updated.");
+	 }
 	@Test(groups = "Sanity Test")
-
 	public void verifyUserDeletion() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);
