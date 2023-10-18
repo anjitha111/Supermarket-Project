@@ -35,8 +35,16 @@ public class AdminUsersPage {
 	private WebElement userType;
 	@FindBy(xpath = "//button[@name='Create']")
 	private WebElement saveButton;
+	@FindBy(xpath="//a[@onclick='click_button(2)']") 
+	private WebElement searchButton;
+	@FindBy(name="Update")
+	private WebElement updateButton;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	private WebElement successMessage;
+	@FindBy(xpath="//button[@name='Search']") 
+	private WebElement usernameSearchField; 
+	@FindBy(xpath="//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]") 
+	private WebElement usernameSearchResult; 
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
 	private List<WebElement> namesList;
 
@@ -83,6 +91,9 @@ public class AdminUsersPage {
 	public boolean isMessageAppeared() {
 		return generalUtility.isTextPresent(successMessage, "User Created Successfully");
 	}
+	public boolean isEditMessageAppeared() {
+		return generalUtility.isTextPresent(successMessage, "User Updated Successfully");
+	}
 
 	public boolean isDeleteMessageAppeared() {
 		return generalUtility.isTextPresent(successMessage, "User Status Changed Successfully");
@@ -104,6 +115,67 @@ public class AdminUsersPage {
 		WebElement deactivateButton = driver.findElement(
 				By.xpath("//table[@class='table table-bordered table-hover table-sm']//tr[" + index + "]//td[5]/a[1]"));
 		pageUtility.scrollAndClick(deactivateButton);
+	}
+	
+	public void activateUser(String personName) {
+		int index = 0;
+		generalUtility = new GeneralUtility();
+		pageUtility = new PageUtility(driver);
+		List<String> names = new ArrayList();
+		names = generalUtility.getTextOfElements(namesList);
+		for (String name : names) {
+			if (personName.equals(name)) {
+				index++;
+				break;
+			}
+			index++;
+		}
+		WebElement activateButton = driver.findElement(
+				By.xpath("//table[@class='table table-bordered table-hover table-sm']//tr[" + index + "]//td[5]/a[1]"));
+		pageUtility.scrollAndClick(activateButton);
+	}
+	
+	public void clickOnEditUser(String personName) 
+	 {
+	 pageUtility = new PageUtility(driver);
+	 int index = 0; 
+	 generalUtility = new GeneralUtility(); 
+	 List<String> names = new ArrayList(); 
+	 names = generalUtility.getTextOfElements(namesList); 
+	 for (String name:names)
+	 { if (personName.equals(name))
+	 { 
+	 index++; 
+	 break; 
+	 } 
+	 index++; 
+	 }
+	 WebElement editButton = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
+	 pageUtility.scrollAndClick(editButton);
+	 editUsername("Ayaansh");
+	 } 
+	public void editUsername(String username)
+	{
+		userName.click(); 
+		userName.clear(); 
+		userName.sendKeys(username);
+		updateButton.click();
+		
+	}
+	public boolean searchUser(String user)
+	{
+		searchButton.click();
+		userName.click();
+		userName.sendKeys(user);
+		usernameSearchField.click();
+		if(user.equals(usernameSearchResult.getText()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	public void deleteUser(String personName) {
 		int index = 0;
