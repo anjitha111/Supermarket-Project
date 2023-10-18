@@ -18,7 +18,6 @@ public class ManagePaymentTest extends Base {
 
 	@Test
 	public void editPaymentMethod() {
-
 		loginPage = new LoginPage(driver);
 		managePaymentPage = new ManagePaymentPage(driver);
 		loginPage.login();
