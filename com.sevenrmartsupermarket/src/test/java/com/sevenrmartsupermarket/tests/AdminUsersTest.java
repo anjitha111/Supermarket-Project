@@ -40,7 +40,7 @@ public class AdminUsersTest extends Base {
 		adminUsersPage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
-		adminUsersPage.deActivateUser("Switha");
+		adminUsersPage.deActivateUser("Janaki");
 		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
 	}
 	@Test(groups = "Regression Test",priority=2)
@@ -85,7 +85,7 @@ public class AdminUsersTest extends Base {
 		adminUsersPage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
-		adminUsersPage.deleteUser("Joykw");
+		adminUsersPage.deleteUser("Elida");
 		Assert.assertFalse(adminUsersPage.isDeleteMessageAppeared());
 	}
 
