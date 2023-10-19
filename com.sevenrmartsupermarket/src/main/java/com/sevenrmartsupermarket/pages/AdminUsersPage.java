@@ -28,7 +28,7 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	private WebElement newButton;
 	@FindBy(xpath="//input[@name='username']")
-	WebElement editUsernameField;
+	WebElement enterUserName;
 	@FindBy(xpath = "//input[@id='un']")
 	private WebElement userName;
 	@FindBy(xpath = "//input[@id='password']")
@@ -154,13 +154,13 @@ public class AdminUsersPage {
 	 }
 	 WebElement editButton = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
 	 pageUtility.scrollAndClick(editButton);
-	 editUsername("Janaki");
+	 editUsername("Ishaanvi");
 	 } 
 	public void editUsername(String username)
 	{
-		editUsernameField.click(); 
-		editUsernameField.clear(); 
-		editUsernameField.sendKeys(username);
+		enterUserName.click(); 
+		enterUserName.clear(); 
+		enterUserName.sendKeys(username);
 		updateButton.click();
 		
 	}
