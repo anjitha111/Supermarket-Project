@@ -18,6 +18,7 @@
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.AdminUsersTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.ManageProductTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.ManagePaymentTest"></class>
 		</classes>
 	</test>
 </suite>
