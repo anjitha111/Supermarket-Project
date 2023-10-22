@@ -19,4 +19,17 @@
 			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
 		</classes>
 	</test>
+	<test name="Sanity test execution">
+		<groups>
+			<run>
+				<include name="Sanity Test">
+				</include>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.AdminUsersTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.ManageContentTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
+		</classes>
+	</test>
 </suite>

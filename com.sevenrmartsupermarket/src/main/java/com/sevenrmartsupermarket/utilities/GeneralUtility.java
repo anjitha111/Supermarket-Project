@@ -41,7 +41,7 @@ public class GeneralUtility {
 	}
 
 	public String getElementsAttribute(WebElement element, String attribute) {
-		return element.getAttribute(attribute);// Otherwise we have to write like getAttribute(id),(name)...
+		return element.getAttribute(attribute);
 	}
 
 	public boolean isTextPresent(WebElement element, String expectedText) {
