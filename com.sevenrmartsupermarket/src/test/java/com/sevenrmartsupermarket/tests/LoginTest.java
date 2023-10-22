@@ -29,7 +29,7 @@ public class LoginTest extends Base {
 	public void verifyInvalidLoginErrorMessage() {
 		loginPage = new LoginPage(driver);
 		String expected_text = "Invalid Username/Password";
-		Assert.assertTrue(loginPage.loginErrorCheck("Devika", "adm"), "User credentials are valid.");
+		Assert.assertTrue(loginPage.login("Devika", "adm"), "User credentials are valid.");
 	}
 
 	@Test

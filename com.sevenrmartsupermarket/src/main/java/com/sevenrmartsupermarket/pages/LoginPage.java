@@ -31,10 +31,10 @@ public class LoginPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		try {
-			ip = new FileInputStream(Constants.CONFIG_FILE_PATH);// File initialization
-			properties.load(ip); // Reading config file.
+			ip = new FileInputStream(Constants.CONFIG_FILE_PATH);
+			properties.load(ip);
 		} catch (Exception e) {
-			e.printStackTrace(); // To print exception in console.
+			e.printStackTrace(); 
 			System.out.println("File not found exception");
 		}
 	}
@@ -60,7 +60,7 @@ public class LoginPage {
 
 	}
 
-	public boolean loginErrorCheck(String username, String password) {
+	public boolean login(String username, String password) {
 		generalUtility = new GeneralUtility();
 		enterUserName(username);
 		enterPassword(password);

@@ -49,6 +49,8 @@ public class AdminUsersPage {
 	private WebElement usernameSearchResult; 
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
 	private List<WebElement> namesList;
+	@FindBy(xpath="//button[@class='close']") 
+	private WebElement alertCloseOption; 
 
 	public AdminUsersPage(WebDriver driver) {
 		this.driver = driver;
@@ -64,6 +66,8 @@ public class AdminUsersPage {
 	}
 
 	public void adminUsersMenuClick() {
+		pageUtility = new PageUtility(driver);
+		pageUtility.scrollAndClick(adminUsersMenu);
 		adminUsersMenu.click();
 	}
 
@@ -72,7 +76,7 @@ public class AdminUsersPage {
 	}
 
 	public void enterUserName(String username) {
-		userName.sendKeys(username);
+		enterUserName.sendKeys(username);
 	}
 
 	public void enterPassword(String password) {
@@ -154,7 +158,7 @@ public class AdminUsersPage {
 	 }
 	 WebElement editButton = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
 	 pageUtility.scrollAndClick(editButton);
-	 editUsername("Ishaanvi");
+	 editUsername("Ishitha");
 	 } 
 	public void editUsername(String username)
 	{
@@ -199,4 +203,8 @@ public class AdminUsersPage {
 		pageUtility.scrollAndClick(deleteButton);
 		driver.switchTo().alert().accept();
 	}
+	public void closeAlert()
+	 { 
+		alertCloseOption.click(); 
+	 }
 }

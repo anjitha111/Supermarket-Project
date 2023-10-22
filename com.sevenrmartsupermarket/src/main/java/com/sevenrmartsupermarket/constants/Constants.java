@@ -22,8 +22,6 @@ public class Constants {
 	/** Data Provider **/
 	@DataProvider(name = "User Login")
 	public Object[][] dataProviderUserLogin() {
-		// return new Object [][] {{"admin","admin"},{"Devika","devi"}}; //Two sets of
-		// username and password given as 2D.
 		excelreader.setExcelFile("LoginData", "Set of valid credentials");
 		return excelreader.getMultidimentionalData(3, 2);
 	}
