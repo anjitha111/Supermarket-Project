@@ -6,7 +6,7 @@
 			class-name="com.sevenrmartsupermarket.listeners.ExtentReporter">
 		</listener>
 	</listeners>
-	<test name="Regression testing">
+	<test name="Health check execution 1">
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.HomeTest"></class>
@@ -14,7 +14,7 @@
 			<class name="com.sevenrmartsupermarket.tests.ManagePaymentTest"></class>
 		</classes>
 	</test>
-	<test name="Smoke testing">
+	<test name="Health check execution 2">
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.AdminUsersTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.ManageContentTest"> </class>

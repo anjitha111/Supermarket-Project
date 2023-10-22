@@ -9,7 +9,6 @@
 	<test name="Smoke testing">
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
-			<class name="com.sevenrmartsupermarket.tests.HomeTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest">
 			</class>
 		</classes>
@@ -18,7 +17,7 @@
 	<test name="Sanity testing">
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.AdminUsersTest"></class>
-			<class name="com.sevenrmartsupermarket.tests.ManageContentTest"> </class>
+			<class name="com.sevenrmartsupermarket.tests.ManageProductTest"></class>
 		</classes>
 	</test>
 </suite>
