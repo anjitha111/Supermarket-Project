@@ -64,7 +64,7 @@ public class AdminUsersTest extends Base {
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
 		adminUsersPage.clickOnEditUser(excelReader.getCellData(0, 0));
 		softAssert.assertTrue(adminUsersPage.isEditMessageAppeared(), "User edit was not successful.");
-		boolean isUpdatedUserPresent = adminUsersPage.searchUser("Ishitha");
+		boolean isUpdatedUserPresent = adminUsersPage.searchUser("Ishaan");
 		adminUsersPage.closeAlert();
 		softAssert.assertTrue(isUpdatedUserPresent, "User details are not updated.");
 		softAssert.assertAll();

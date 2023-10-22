@@ -158,7 +158,7 @@ public class AdminUsersPage {
 	 }
 	 WebElement editButton = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
 	 pageUtility.scrollAndClick(editButton);
-	 editUsername("Ishitha");
+	 editUsername("Ishaan");
 	 } 
 	public void editUsername(String username)
 	{
