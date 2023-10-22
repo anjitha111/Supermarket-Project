@@ -18,7 +18,7 @@
           <version>3.1.2</version>
           <configuration>
 			  <suiteXmlFiles>
-				<file>src/main/resources/XMLFiles/parallel.xml</file>
+				<file>src/main/resources/XMLFiles/healthcheck.xml</file>
 			  </suiteXmlFiles>
 		  </configuration>
         </plugin>
