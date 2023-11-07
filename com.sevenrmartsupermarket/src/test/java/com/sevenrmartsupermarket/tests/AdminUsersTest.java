@@ -33,22 +33,22 @@ public class AdminUsersTest extends Base {
 		Assert.assertTrue(adminUsersPage.isMessageAppeared(), "User is not created");
 	}
 
-	@Test(groups = "Smoke Test", retryAnalyzer = RetryAnalyser.class)
+	@Test(groups = "Smoke Test")
 	public void verifyUserDeactivation() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
-		String existingStatus = adminUsersPage.deActivateUser(excelReader.getCellData(4, 0));
-		if (existingStatus.equals("User already deactivated")) {
+		String existingStatus = adminUsersPage.deActivateUser(excelReader.getCellData(0, 0));
+		if (existingStatus.equals("User is already deactivated")) {
 			Assert.assertTrue(false, "User is already in deactivated status.");
 		} else if (existingStatus.equals("Inactive")) {
 			Assert.assertTrue(adminUsersPage.isStatusChangeMessageAppeared(), "User status got changed successfully.");
 		}
 	}
 
-	@Test(groups = "Regression Test", priority = 2)
+	@Test(groups = "Regression Test", priority = 2, retryAnalyzer = RetryAnalyser.class)
 	public void verifyUserActivation() {
 		loginPage = new LoginPage(driver);
 		adminUsersPage = new AdminUsersPage(driver);

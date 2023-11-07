@@ -67,9 +67,10 @@ public class AdminUsersPage {
 	}
 
 	public void adminUsersMenuClick() {
+		waitUtility = new WaitUtility(driver);
 		pageUtility = new PageUtility(driver);
+		waitUtility.waitForElementToBeVisible(adminUsersMenu, 10l);
 		pageUtility.scrollAndClick(adminUsersMenu);
-		adminUsersMenu.click();
 	}
 
 	public void clickOnNewButton() {
@@ -100,6 +101,7 @@ public class AdminUsersPage {
 	}
 
 	public boolean isEditMessageAppeared() {
+		waitUtility = new WaitUtility(driver);
 		waitUtility.waitForElementToBeVisible(successMessage, 10l);
 		return generalUtility.isTextPresent(successMessage, "User Updated Successfully");
 	}
