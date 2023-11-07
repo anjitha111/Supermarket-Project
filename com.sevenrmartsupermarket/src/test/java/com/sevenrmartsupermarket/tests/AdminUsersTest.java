@@ -1,5 +1,4 @@
 package com.sevenrmartsupermarket.tests;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -40,8 +39,13 @@ public class AdminUsersTest extends Base {
 		adminUsersPage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
-		adminUsersPage.deActivateUser("Jana");
-		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
+		excelReader.setExcelFile("AdminUserData", "Admin User Input");
+		String existingStatus = adminUsersPage.deActivateUser(excelReader.getCellData(4, 0));
+		if (existingStatus.equals("User already deactivated")) {
+			Assert.assertTrue(false, "User is already in deactivated status.");
+		} else if (existingStatus.equals("Inactive")) {
+			Assert.assertTrue(adminUsersPage.isStatusChangeMessageAppeared(), "User status got changed successfully.");
+		}
 	}
 
 	@Test(groups = "Regression Test", priority = 2)
@@ -51,8 +55,13 @@ public class AdminUsersTest extends Base {
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
-		adminUsersPage.activateUser(excelReader.getCellData(3, 0));
-		Assert.assertFalse(adminUsersPage.isMessageAppeared(), "User status got changed successfully.");
+		String existingStatus = adminUsersPage.activateUser(excelReader.getCellData(4, 0));
+		if (existingStatus.equals("User is already activated.")) {
+			Assert.assertFalse(true, "User is already in activated status!!!");
+		} else if (existingStatus.equals("Active")) {
+			Assert.assertTrue(adminUsersPage.isStatusChangeMessageAppeared(), "User status got changed successfully.");
+		}
+
 	}
 
 	@Test(groups = "Sanity Test", priority = 3)
@@ -64,20 +73,20 @@ public class AdminUsersTest extends Base {
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
 		adminUsersPage.clickOnEditUser(excelReader.getCellData(0, 0));
 		softAssert.assertTrue(adminUsersPage.isEditMessageAppeared(), "User edit was not successful.");
-		boolean isUpdatedUserPresent = adminUsersPage.searchUser("Ishaan");
 		adminUsersPage.closeAlert();
+		boolean isUpdatedUserPresent = adminUsersPage.isPersonAppearingInSearch("Ishaan");
 		softAssert.assertTrue(isUpdatedUserPresent, "User details are not updated.");
 		softAssert.assertAll();
 	}
 
 	@Test(groups = "Smoke Test", priority = 4)
-	public void verifySearchUser() {
+	public void isPersonAppearingInSearch() {
 		loginPage = new LoginPage(driver);
 		loginPage.login();
 		adminUsersPage = new AdminUsersPage(driver);
 		adminUsersPage.adminUsersMenuClick();
 		excelReader.setExcelFile("AdminUserData", "Admin User Input");
-		boolean isUpdatedUserPresent = adminUsersPage.searchUser(excelReader.getCellData(1, 0));
+		boolean isUpdatedUserPresent = adminUsersPage.isPersonAppearingInSearch(excelReader.getCellData(1, 0));
 		Assert.assertTrue(isUpdatedUserPresent, "User does not exist!!!");
 	}
 
@@ -88,14 +97,7 @@ public class AdminUsersTest extends Base {
 		loginPage.login();
 		adminUsersPage.adminUsersMenuClick();
 		adminUsersPage.deleteUser("Margerette");
+		boolean isUpdatedUserPresent = adminUsersPage.isPersonAppearingInSearch("Margerette");
 		Assert.assertFalse(adminUsersPage.isDeleteMessageAppeared());
 	}
-
-	@Test(dataProvider = "User Login", dataProviderClass = Constants.class)
-	public void verifyUser(String username, String password) {
-		System.out.println(GeneralUtility.getRandomFullName());
-		System.out.println(username);
-		System.out.println(password);
-	}
-
 }

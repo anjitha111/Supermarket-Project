@@ -34,7 +34,7 @@ public class LoginPage {
 			ip = new FileInputStream(Constants.CONFIG_FILE_PATH);
 			properties.load(ip);
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 			System.out.println("File not found exception");
 		}
 	}

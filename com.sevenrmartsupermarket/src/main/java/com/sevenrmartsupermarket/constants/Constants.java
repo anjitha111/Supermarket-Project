@@ -18,6 +18,8 @@ public class Constants {
 	/** Expected results **/
 	/** Login Page **/
 	public static String expected_text = "Invalid Username/Password";
+	public static String userStatusAfterActivation="Active";
+	public static String userStatusAfterDeactivation="Inactive";
 
 	/** Data Provider **/
 	@DataProvider(name = "User Login")

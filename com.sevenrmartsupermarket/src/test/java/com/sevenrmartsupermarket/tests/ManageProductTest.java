@@ -18,7 +18,7 @@ public class ManageProductTest extends Base {
 		manageProductPage = new ManageProductPage(driver);
 		loginPage.login();
 		manageProductPage.manageProductMenu();
-		manageProductPage.searchByTitle("Product1");
-		Assert.assertTrue(true, "Searched item is not in the list.");
+		boolean result = manageProductPage.searchByTitle("Product1");
+		Assert.assertTrue(result, "Searched item is not in the list.");
 	}
 }

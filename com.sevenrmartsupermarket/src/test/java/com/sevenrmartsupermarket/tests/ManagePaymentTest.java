@@ -22,8 +22,8 @@ public class ManagePaymentTest extends Base {
 		managePaymentPage = new ManagePaymentPage(driver);
 		loginPage.login();
 		managePaymentPage.managePaymentMenuClick();
-		managePaymentPage.editPayment("Credit card", "100000");
-		Assert.assertTrue(true, "Update was not successful.");
+		boolean resultMessage = managePaymentPage.editPayment("Credit card", "100000");
+		Assert.assertTrue(resultMessage, "Edit payment was not successful..!");
 
 	}
 }

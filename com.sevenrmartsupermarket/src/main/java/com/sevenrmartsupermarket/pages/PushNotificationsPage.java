@@ -22,7 +22,6 @@ public class PushNotificationsPage {
 	private WebElement descriptionField;
 	@FindBy(xpath = "//button[@type='submit']")
 	private WebElement sendButton;
-
 	@FindBy(xpath = "//h5[text()=' Alert!']")
 	WebElement successMessage;
 

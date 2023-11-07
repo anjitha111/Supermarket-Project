@@ -18,7 +18,7 @@ public class LoginTest extends Base {
 	@Test
 	public void verifyLoginFunctionality() {
 		loginPage = new LoginPage(driver);
-		homePage= new HomePage(driver);
+		homePage = new HomePage(driver);
 		loginPage.login();
 		String actualProfileName = homePage.getProfileName();
 		String expectedProfileName = "Admin";

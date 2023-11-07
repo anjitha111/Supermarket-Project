@@ -8,11 +8,15 @@ import org.openqa.selenium.support.PageFactory;
 import com.sevenrmartsupermarket.utilities.GeneralUtility;
 
 public class HomePage {
-	GeneralUtility generalUtility;
 
+	GeneralUtility generalUtility;
 	WebDriver driver;
 	@FindBy(xpath = "//a[@class='d-block']")
 	private WebElement profileName;
+	@FindBy(xpath = "//a[@class='small-box-footer'][1]")
+	WebElement managePageMoreInfo;
+	@FindBy(xpath = "//h1[@class='m-0 text-dark']")
+	WebElement listPages;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -23,5 +27,10 @@ public class HomePage {
 		generalUtility = new GeneralUtility();
 		return generalUtility.getTextOfElement(profileName);
 
+	}
+
+	public String clickOnManagePageMoreInfoLinkFromHome() {
+		managePageMoreInfo.click();
+		return listPages.getText();
 	}
 }

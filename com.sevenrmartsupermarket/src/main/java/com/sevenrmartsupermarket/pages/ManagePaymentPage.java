@@ -39,9 +39,10 @@ public class ManagePaymentPage {
 
 	}
 
-	public void editPayment(String title, String payLimit) {
+	public boolean editPayment(String title, String payLimit) {
+		boolean result;
 		editButtonClick();
-		updateData(title, payLimit);
+		return result = updateData(title, payLimit);
 	}
 
 	public void managePaymentMenuClick() {
